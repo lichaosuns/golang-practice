@@ -26,4 +26,14 @@ func main() {
 
 	fmt.Println(int64Val, err, reflect.TypeOf(int64Val))
 
+	// 从输入中获取
+
+	intVal10 := 10
+
+	returnRes, err1 := fmt.Sscan("1000", &intVal10)
+
+	fmt.Println(intVal10)
+	fmt.Println(err1)
+	fmt.Println(returnRes)
+
 }
