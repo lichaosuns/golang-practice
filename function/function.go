@@ -4,6 +4,9 @@ import (
 	"fmt"
 )
 
+type first func(int) int
+type second func(int) first
+
 func main() {
 	fmt.Println("this is main function")
 	SimpleFunction()
@@ -52,6 +55,9 @@ func main() {
 	var twoFuncRes = twoFunc(1)(2)(3)
 	fmt.Println((twoFuncRes))
 
+	var twoFuncTypeRes = twoFuncType(4)(5)(6)
+	fmt.Println(twoFuncTypeRes)
+
 }
 
 func SimpleFunction() {
@@ -98,6 +104,14 @@ func returnFunc(x int) func(int) int {
 func twoFunc(z int) func(int) func(int) int {
 	return func(x int) func(int) int {
 		return func(y int) int {
+			return x + y + z
+		}
+	}
+}
+
+func twoFuncType(z int) second {
+	return func(y int) first {
+		return func(x int) int {
 			return x + y + z
 		}
 	}
